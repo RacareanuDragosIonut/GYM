@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <BorderPane prefHeight="412.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RegistrationController">
    <left>
       <AnchorPane prefHeight="399.0" prefWidth="219.0" BorderPane.alignment="CENTER">
@@ -88,9 +87,10 @@
 
              <ChoiceBox fx:id="role" layoutX="108.0" layoutY="272.0" prefHeight="26.0" prefWidth="173.0">
     </ChoiceBox>
-              <Button fx:id="registerButton" layoutX="220.0" layoutY="354.0" onAction="#handleRegisterAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Register" textFill="#88001b" />
-            <Button fx:id="backButton" layoutX="27.0" layoutY="354.0" onAction="#backButtonOnAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Back" textFill="#88001b" />
-            <Label fx:id="registrationMessage" layoutX="15.0" layoutY="316.0" prefHeight="23.0" prefWidth="274.0" textFill="WHITE">
+              <Button fx:id="registerButton" layoutX="258.0" layoutY="372.0" onAction="#handleRegisterAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Register" textFill="#88001b" />
+            <Button fx:id="backButton" layoutX="26.0" layoutY="372.0" onAction="#backButtonOnAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Log-in" textFill="#88001b" />
+            <Label fx:id="registrationMessage" layoutX="15.0" layoutY="316.0" prefHeight="23.0" prefWidth="274.0" textFill="WHITE" />
+            <Label layoutX="25.0" layoutY="344.0" text="Already have an account?" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
