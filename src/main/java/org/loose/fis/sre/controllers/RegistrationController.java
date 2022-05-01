@@ -1,7 +1,6 @@
 package org.loose.fis.sre.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
@@ -9,12 +8,15 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.services.UserService;
 
+import java.sql.SQLException;
+
+
 public class RegistrationController {
 
+    public Button registerButton;
     @FXML
     private Label registrationMessage;
     @FXML
@@ -32,24 +34,25 @@ public class RegistrationController {
     @FXML
     private ChoiceBox role;
     @FXML
-    private Button backButton;
+    private Button loginButton;
 
-    public void backButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) backButton.getScene().getWindow();
+    public void loginButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
     }
 
-    @FXML
     public void initialize() {
         role.getItems().addAll("Client", "Trainer");
+        role.setValue("");
     }
+
 
     @FXML
     public void handleRegisterAction() {
         try {
-            UserService.addUser(usernameField.getText(), passwordField.getText(), firstnameField.getText(), lastnameField.getText(), (String) role.getValue(),  ageField.getText(), phonenumberField.getText());
+            UserService.addUser(usernameField.getText(), passwordField.getText(), firstnameField.getText(), lastnameField.getText(),  ageField.getText(), phonenumberField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
-        } catch (UsernameAlreadyExistsException e) {
+        } catch (UsernameAlreadyExistsException | SQLException e) {
             registrationMessage.setText(e.getMessage());
         }
     }

@@ -25,8 +25,10 @@ targetCompatibility = 11
 dependencies {
     implementation 'org.openjfx:javafx-controls:15.0.1'
     implementation 'org.openjfx:javafx-fxml:15.0.1'
-    implementation 'org.dizitart:nitrite:3.4.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.1'
+    implementation "org.slf4j:slf4j-api:1.7.30"
+    implementation "org.slf4j:slf4j-simple:1.6.2"
+    implementation "mysql:mysql-connector-java:8.0.29"
 }
 
 mainClassName = 'org.loose.fis.sre.Main'
