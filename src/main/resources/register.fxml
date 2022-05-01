@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="412.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RegistrationController">
+<BorderPane prefHeight="415.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RegistrationController">
    <left>
       <AnchorPane prefHeight="399.0" prefWidth="219.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="400.0" fitWidth="229.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #88001b;">
+            <ImageView fx:id="interfaceImageView" fitHeight="450.0" fitWidth="240.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #88001b;">
                <image>
                   <Image url="@../../../../../images/interface-overlay.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="52.0" fitWidth="71.0" layoutX="8.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="weightImageView" fitHeight="52.0" fitWidth="71.0" layoutX="8.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../images/weight.jpg" />
                </image>
@@ -25,7 +25,7 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="366.0" style="-fx-background-color: #88001b;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="54.0" fitWidth="62.0" layoutX="146.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="createaccimageView" fitHeight="54.0" fitWidth="62.0" layoutX="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../images/create acc.png" />
                </image>
@@ -88,7 +88,7 @@
              <ChoiceBox fx:id="role" layoutX="108.0" layoutY="272.0" prefHeight="26.0" prefWidth="173.0">
     </ChoiceBox>
               <Button fx:id="registerButton" layoutX="258.0" layoutY="372.0" onAction="#handleRegisterAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Register" textFill="#88001b" />
-            <Button fx:id="backButton" layoutX="26.0" layoutY="372.0" onAction="#backButtonOnAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Log-in" textFill="#88001b" />
+            <Button fx:id="loginButton" layoutX="26.0" layoutY="372.0" onAction="#loginButtonOnAction" prefHeight="16.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF;" text="Log-in" textFill="#88001b" />
             <Label fx:id="registrationMessage" layoutX="15.0" layoutY="316.0" prefHeight="23.0" prefWidth="274.0" textFill="WHITE" />
             <Label layoutX="25.0" layoutY="344.0" text="Already have an account?" textFill="WHITE">
                <font>

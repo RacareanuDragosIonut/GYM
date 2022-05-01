@@ -17,10 +17,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         initDirectory();
-        UserService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
         primaryStage.setTitle("Gym App");
-        primaryStage.setScene(new Scene(root, 574, 412));
+        primaryStage.setScene(new Scene(root, 580, 415));
         primaryStage.show();
     }
 

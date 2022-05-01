@@ -1,39 +1,84 @@
 package org.loose.fis.sre.services;
 
-import org.dizitart.no2.Nitrite;
-import org.dizitart.no2.objects.ObjectRepository;
+import java.sql.*;
+import java.util.*;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.model.User;
-
+import org.loose.fis.sre.DatabaseConnection;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
-
-import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class UserService {
 
-    private static ObjectRepository<User> userRepository;
+    private static Statement statement;
+    private static PreparedStatement preparedStatement = null;
+    private static DatabaseConnection connectNow = new DatabaseConnection();
+    private static Connection connection = connectNow.getConnection();
 
-    public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("registration-example.db").toFile())
-                .openOrCreate("test", "test");
+    private static final String DATABASE_URL = "jdbc:mysql://localhost/gymapp";
+    private static final String DATABASE_USERNAME = "root";
+    private static final String DATABASE_PASSWORD = "AnisiaRosu12";
+    private static final String INSERT_QUERY = "INSERT INTO user_account (username, password, firstname, lastname, age, phonenumber, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        userRepository = database.getRepository(User.class);
+    private static String connectQuery = "SELECT username FROM user_account";
+
+    static {
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    static ResultSet queryOutput;
+    static {
+        try {
+            queryOutput = statement.executeQuery(connectQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void addUser(String username, String password, String firstname, String lastname, String role, String age, String phonenumber) throws UsernameAlreadyExistsException {
+    public static void addUser(String username, String password, String firstname, String lastname, String age, String phonenumber, String role) throws UsernameAlreadyExistsException, SQLException {
         checkUserDoesNotAlreadyExist(username);
-        userRepository.insert(new User(username, encodePassword(username, password), firstname, lastname, age, phonenumber, role));
+        connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        preparedStatement = connection.prepareStatement(INSERT_QUERY);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        preparedStatement.setString(3, firstname);
+        preparedStatement.setString(4, lastname);
+        preparedStatement.setString(5, age);
+        preparedStatement.setString(6, phonenumber);
+        preparedStatement.setString(7, role);
+        System.out.println(preparedStatement);
+        preparedStatement.executeUpdate();
+    }
+
+    public static ArrayList<User> getAllUsers() {
+        try {
+            ArrayList<User> users = new ArrayList<>();
+            statement.execute("SELECT * FROM user_account");
+            ResultSet resultSet = statement.getResultSet();
+
+            while(resultSet.next())
+                users.add(new User(resultSet.getString("username"), resultSet.getString("password"),
+                        resultSet.getString("firstname"), resultSet.getString("lastname"), resultSet.getString("age"),
+                        resultSet.getString("phonenumber"), resultSet.getString("role")));
+
+            return users.size() == 0 ? null : users;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {
-        for (User user : userRepository.find()) {
-            if (Objects.equals(username, user.getUsername()))
-                throw new UsernameAlreadyExistsException(username);
-        }
+        ArrayList<User> users = getAllUsers();
+        if(users != null)
+            for(var i : users)
+                if(username.equals(i)) {
+                    throw new UsernameAlreadyExistsException(username);
+                }
     }
 
     private static String encodePassword(String salt, String password) {
