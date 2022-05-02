@@ -11,7 +11,7 @@
          <children>
             <ImageView fx:id="loginImageView" fitHeight="65.0" fitWidth="265.0" layoutX="172.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/loginandlock.jpg" />
+                  <Image url="@loginandlock.jpg" />
                </image>
             </ImageView>
          </children>
@@ -38,12 +38,12 @@
       </Button>
       <ImageView fx:id="weightImageView" fitHeight="46.0" fitWidth="66.0" layoutX="14.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/weight.jpg" />
+            <Image url="@weight.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="gymappimageView" fitHeight="89.0" fitWidth="78.0" layoutX="434.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/LOGOAPP.jpg" />
+            <Image url="@LOGOAPP.jpg" />
          </image>
       </ImageView>
       <Label fx:id="loginMessage" layoutX="45.0" layoutY="109.0" prefHeight="20.0" prefWidth="400.0" textFill="#88001b">
