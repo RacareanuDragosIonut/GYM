@@ -1,6 +1,7 @@
 package org.loose.fis.sre.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -47,10 +48,31 @@ public class LoginController {
 
     public void loginButtonOnAction() {
         try {
-            UserService.loginUser(usernameField.getText(), passwordField.getText()/*, (String) role.getValue()*/);
+            UserService.loginUser(usernameField.getText(), passwordField.getText());
             loginMessage.setText("Login successfully!");
+            if(UserService.verifyRole(usernameField.getText(),passwordField.getText(),(String) role.getValue()) == 1){
+                Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainpage-client.fxml"));
+                Stage clientStage = new Stage();
+                clientStage.setTitle("Main Menu");
+                clientStage.setScene(new Scene(root, 520, 400));
+                clientStage.show();
+                //window1 = (Stage)loginButton.getScene().getWindow();
+                //window1.setScene(new Scene(root));
+            }
+            else
+                if(UserService.verifyRole(usernameField.getText(),passwordField.getText(),(String) role.getValue()) == 2) {
+                    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainpage-trainer.fxml"));
+                    Stage trainerStage = new Stage();
+                    trainerStage.setTitle("Main Menu");
+                    trainerStage.setScene(new Scene(root, 520, 400));
+                    trainerStage.show();
+                    //window1 = (Stage)loginButton.getScene().getWindow();
+                    //window1.setScene(new Scene(root));
+                }
         } catch (WrongPassword | UsernameNotFound | SQLException e ) {
             loginMessage.setText(e.getMessage());
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

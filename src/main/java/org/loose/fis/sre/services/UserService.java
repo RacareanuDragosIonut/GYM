@@ -94,25 +94,32 @@ public class UserService {
         }
     }
 
-    public static void loginUser(String username, String password/*, String role*/) throws SQLException,  WrongPassword, UsernameNotFound {
+    public static void loginUser(String username, String password) throws SQLException,  WrongPassword, UsernameNotFound {
 
         String LOGIN_QUERY = "SELECT * FROM user_account WHERE username = ?";
         preparedStatement = connection.prepareStatement(LOGIN_QUERY);
         preparedStatement.setString(1, username);
-        //preparedStatement.setString(1, password);
-        //preparedStatement.setString(1, role);
         resultSet = preparedStatement.executeQuery();
         if (!resultSet.next())
             throw new UsernameNotFound(username);
 
-        LOGIN_QUERY = "SELECT * FROM user_account WHERE username = ? AND password = ?";
+        LOGIN_QUERY = "SELECT * FROM user_account WHERE username = ? AND password = ?;";
         preparedStatement = connection.prepareStatement(LOGIN_QUERY);
         preparedStatement.setString(1, username);
-        preparedStatement.setString(1, password);
-        //preparedStatement.setString(1, role);
+        preparedStatement.setString(2, password);
         resultSet = preparedStatement.executeQuery();
         if (!resultSet.next())
             throw new WrongPassword(password);
+    }
+
+    public static int verifyRole(String username, String password, String role) {
+        User user = new User(username, password, role);
+        if(user.getRole().equals("Client"))
+            return 1;
+        else
+            if(user.getRole().equals("Trainer"))
+                return 2;
+            return 0;
     }
 
     private static String encodePassword(String salt, String password) {
