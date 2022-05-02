@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.loose.fis.sre.services.FileSystemService;
 import org.loose.fis.sre.services.UserService;
 
@@ -16,10 +17,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         initDirectory();
-        UserService.initDatabase();
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("register.fxml"));
-        primaryStage.setTitle("Registration Example");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Gym App");
+        primaryStage.setScene(new Scene(root, 580, 415));
         primaryStage.show();
     }
 

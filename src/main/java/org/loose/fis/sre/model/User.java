@@ -1,16 +1,24 @@
 package org.loose.fis.sre.model;
 
-import org.dizitart.no2.objects.Id;
+//import org.dizitart.no2.objects.Id;
 
 public class User {
-    @Id
+    //@Id
     private String username;
     private String password;
     private String role;
+    private String firstname;
+    private String lastname;
+    private String age;
+    private String phonenumber;
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, String firstname, String lastname, String age, String phonenumber, String role) {
         this.username = username;
         this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = age;
+        this.phonenumber = phonenumber;
         this.role = role;
     }
 
@@ -31,6 +39,38 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getRole() {
@@ -60,4 +100,6 @@ public class User {
         result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
+
+
 }
