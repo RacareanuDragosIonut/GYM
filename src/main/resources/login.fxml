@@ -25,7 +25,7 @@
       <Label layoutX="100.0" layoutY="176.0" prefHeight="26.0" prefWidth="66.0" text="Password:" textFill="#88001b" />
       <Label layoutX="100.0" layoutY="228.0" prefHeight="26.0" prefWidth="66.0" text="Role:" textFill="#88001b" />
       <ChoiceBox fx:id="role" layoutX="92.0" layoutY="248.0" prefHeight="25.0" prefWidth="336.0" />
-      <PasswordField fx:id="setPasswordField" layoutX="92.0" layoutY="202.0" prefHeight="25.0" prefWidth="336.0" promptText="Password" />
+      <PasswordField fx:id="passwordField" layoutX="92.0" layoutY="202.0" prefHeight="25.0" prefWidth="336.0" promptText="Password" />
       <Button fx:id="loginButton" layoutX="92.0" layoutY="301.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" prefWidth="336.0" style="-fx-background-color: #88001b;" text="Login" textFill="WHITE">
          <font>
             <Font size="13.0" />
@@ -46,6 +46,9 @@
             <Image url="@../../../images/LOGOAPP.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="loginMessage" layoutX="214.0" layoutY="109.0" prefHeight="27.0" prefWidth="106.0" textFill="#88001b" />
+      <Label fx:id="loginMessage" layoutX="45.0" layoutY="109.0" prefHeight="20.0" prefWidth="400.0" textFill="#88001b">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
 </AnchorPane>

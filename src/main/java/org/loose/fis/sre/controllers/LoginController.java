@@ -1,24 +1,26 @@
 package org.loose.fis.sre.controllers;
 
-import com.sun.javafx.charts.Legend;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import org.loose.fis.sre.exceptions.UsernameNotFound;
+import org.loose.fis.sre.exceptions.WrongPassword;
 import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController {
+    private Stage window1;
+    private Scene scene;
+    private Parent root;
+
     @FXML
     private TextField usernameField;
     @FXML
@@ -26,9 +28,16 @@ public class LoginController {
     @FXML
     private ChoiceBox role;
     @FXML
-    private Button backButton;
+    public Button backButton;
     @FXML
     private Label loginMessage;
+    @FXML
+    private Button loginButton;
+
+    /*public LoginController(PasswordField passwordField) {
+        this.passwordField = passwordField;
+    }*/
+
     @FXML
 
     public void initialize() {
@@ -38,14 +47,15 @@ public class LoginController {
 
     public void loginButtonOnAction() {
         try {
-            UserService.loginUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
+            UserService.loginUser(usernameField.getText(), passwordField.getText()/*, (String) role.getValue()*/);
             loginMessage.setText("Login successfully!");
-        } catch (SQLException e) {
+        } catch (WrongPassword | UsernameNotFound | SQLException e ) {
+            loginMessage.setText(e.getMessage());
             e.printStackTrace();
         }
     }
 
-    public void backButtonOnAction() {
+    public void backButtonOnAction() throws IOException {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
     }
