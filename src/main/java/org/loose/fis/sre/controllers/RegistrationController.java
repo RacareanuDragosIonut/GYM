@@ -61,17 +61,16 @@ public class RegistrationController {
             UserService.addUser(usernameField.getText(), passwordField.getText(), firstnameField.getText(), lastnameField.getText(),  ageField.getText(), phonenumberField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
             loginButtonOnAction();
-        } catch (UsernameAlreadyExistsException e) {
+
+        } catch (UsernameAlreadyExistsException | SQLException e) {
             registrationMessage.setText(e.getMessage());
-        }  catch (SQLException e) {
-            e.printStackTrace();
-            registrationMessage.setText(e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
+       
         }
     }
 
-    public void loginButtonOnAction() throws IOException {
+
+
+    public void loginButtonOnAction() {
         try {
             Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("login.fxml"));
             Stage loginStage = new Stage();
@@ -84,3 +83,6 @@ public class RegistrationController {
 
     }
 }
+
+
+    
