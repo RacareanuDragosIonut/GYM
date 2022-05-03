@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.MainMenuTrainerController">
+   <children>
+      <AnchorPane prefHeight="106.0" prefWidth="520.0" style="-fx-background-color: #88001b;">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="210.0" layoutX="160.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@mainmenupicture.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="55.0" fitWidth="73.0" layoutX="5.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@weight.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="70.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="Manage classes" textFill="WHITE" />
+      <Button layoutX="195.0" layoutY="271.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="View Classes To Do" textFill="WHITE" />
+      <Button layoutX="328.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="View Client History" textFill="WHITE" />
+      <Button layoutX="70.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="Approve Client Request" textFill="WHITE" />
+      <Button layoutX="328.0" layoutY="350.0" mnemonicParsing="false" style="-fx-background-color: #88001b;" text="Approve Membership Request" textFill="WHITE" />
+      <ImageView fitHeight="54.0" fitWidth="63.0" layoutX="115.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@manageclasses.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="52.0" fitWidth="63.0" layoutX="387.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@trainershistory.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="63.0" layoutX="252.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@classestodo.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="59.0" layoutX="390.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@approvemembershiprequest.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="69.0" fitWidth="66.0" layoutX="14.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LOGOAPP.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="59.0" layoutX="131.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@approveclientrequest.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
