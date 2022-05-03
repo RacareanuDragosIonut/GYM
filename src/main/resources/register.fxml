@@ -11,12 +11,12 @@
          <children>
             <ImageView fx:id="interfaceImageView" fitHeight="450.0" fitWidth="240.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #88001b;">
                <image>
-                  <Image url="@../../../../../images/interface-overlay.png" />
+                  <Image url="@interface-overlay.png" />
                </image>
             </ImageView>
             <ImageView fx:id="weightImageView" fitHeight="52.0" fitWidth="71.0" layoutX="8.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../images/weight.jpg" />
+                  <Image url="@weight.jpg" />
                </image>
             </ImageView>
          </children>
@@ -27,7 +27,7 @@
          <children>
             <ImageView fx:id="createaccimageView" fitHeight="54.0" fitWidth="62.0" layoutX="146.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../images/create acc.png" />
+                  <Image url="@create acc.png" />
                </image>
             </ImageView>
 
