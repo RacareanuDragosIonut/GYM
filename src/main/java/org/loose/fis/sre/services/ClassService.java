@@ -87,5 +87,36 @@ public class ClassService {
         }
 
     }
+    public static void editClass(String type, String day, String hour, int numberofclients) throws SQLException, Classwiththatscheduledoesnotexist {
+        Class gymclass = new Class(type, day, hour, numberofclients);
+        checkClasswiththatscheduledoesnotexist(gymclass);
+        connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        String edit = "UPDATE classes SET type = '" + type + "'WHERE day = '" + day + "'AND hour = '" + hour + "' ";
+        preparedStatement = connection.prepareStatement(edit);
+
+        System.out.println(preparedStatement);
+        preparedStatement.executeUpdate();
+    }
+
+    private static void checkClasswiththatscheduledoesnotexist(Class gymclass) throws Classwiththatscheduledoesnotexist {
+        ArrayList<Class> gymclasses = getAllClasses();
+        int ok = 0;
+        if (gymclasses == null)
+            throw new Classwiththatscheduledoesnotexist(gymclass.getday(), gymclass.gethour());
+        else {
+            Iterator<Class> it = gymclasses.iterator();
+            while (it.hasNext()) {
+                Class aux = it.next();
+                if (aux.gethour().equals(gymclass.gethour()) && (aux.getday()).equals(gymclass.getday())) {
+                    ok = 1;
+                    break;
+                }
+            }
+            if (ok == 0)
+                throw new Classwiththatscheduledoesnotexist(gymclass.getday(), gymclass.gethour());
+
+        }
+
+    }
 }
 
