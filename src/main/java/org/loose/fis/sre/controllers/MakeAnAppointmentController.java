@@ -1,12 +1,11 @@
 package org.loose.fis.sre.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 import org.loose.fis.sre.DatabaseConnection;
+import org.loose.fis.sre.exceptions.ClassFull;
+import org.loose.fis.sre.services.GymClassesService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,8 +25,6 @@ public class MakeAnAppointmentController implements Initializable {
     @FXML
     private Button makeanappointmentButton;
 
-    String[] classes = {"Lower Body Class", "Upper Body Class", "Full Body Class", "Cycling Class"};
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -43,7 +40,7 @@ public class MakeAnAppointmentController implements Initializable {
                 String gym_class = queryOutput.getString("gym_class_name");
                 String hour = queryOutput.getString("beggining_hour");
                 String day = queryOutput.getString("day");
-                String listOut = gym_class + ": " + day + " la " + hour;
+                String listOut = gym_class + ": " + day + " la ora " + hour;
                 classesList.getItems().add(listOut);
             }
         } catch (SQLException e) {
@@ -60,7 +57,13 @@ public class MakeAnAppointmentController implements Initializable {
 
     }
 
-    public void makeanappointmentButtonOnAction() {
+    public void makeanappointmentButtonOnAction() throws ClassFull, SQLException {
+        try {
+            GymClassesService.addAppointment(classesList.getSelectionModel().getSelectedItem());
+            hours.setText("Successful appointment!");
+        }catch (ClassFull e){
+            hours.setText(e.getMessage());
+        }
 
     }
 }
