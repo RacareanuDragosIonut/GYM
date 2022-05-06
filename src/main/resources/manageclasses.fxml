@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ManageClassesController">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="187.0" fitWidth="199.0" layoutX="1.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Manage Classes.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #88001b;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="27.0" layoutY="43.0" prefHeight="29.0" prefWidth="48.0" style="-fx-background-color: white;" text="Type:" />
+            <TextField fx:id="typefield" layoutX="108.0" layoutY="44.0" />
+            <Label layoutX="28.0" layoutY="88.0" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: white;" text="Day:" />
+            <TextField fx:id="dayfield" layoutX="108.0" layoutY="93.0" />
+            <Label layoutX="28.0" layoutY="137.0" prefHeight="30.0" prefWidth="49.0" style="-fx-background-color: white;" text="Hour:" />
+            <TextField fx:id="hourfield" layoutX="108.0" layoutY="136.0" prefHeight="31.0" prefWidth="149.0" />
+            <Label layoutX="28.0" layoutY="184.0" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: white;" text="Nrclients:" />
+            <TextField fx:id="nrclientsfield" layoutX="108.0" layoutY="184.0" />
+            <Button fx:id="addbutton" layoutX="18.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleaddaction" prefHeight="25.0" prefWidth="82.0" text="Add Class" />
+            <Button fx:id="editbutton" layoutX="131.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleeditaction" prefHeight="25.0" prefWidth="77.0" text="Edit Class" />
+            <Button fx:id="cancelbutton" layoutX="228.0" layoutY="246.0" mnemonicParsing="false" onAction="#handlecancelaction" text="Cancel Class" />
+            <Button fx:id="backbutton" layoutX="333.0" layoutY="320.0" mnemonicParsing="false" onAction="#backbuttononaction" prefHeight="25.0" prefWidth="65.0" text="Back" />
+            <Label fx:id="addeditcancelmessage" layoutX="3.0" layoutY="312.0" prefHeight="31.0" prefWidth="327.0" style="-fx-background-color: white;" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
