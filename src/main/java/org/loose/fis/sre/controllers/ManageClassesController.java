@@ -62,5 +62,8 @@ public class ManageClassesController {
             addeditcancelmessage.setText(e.getMessage());
         }
     }
-
+    public void backbuttononaction() throws IOException {
+        Stage stage = (Stage) backbutton.getScene().getWindow();
+        stage.close();
+    }
 }

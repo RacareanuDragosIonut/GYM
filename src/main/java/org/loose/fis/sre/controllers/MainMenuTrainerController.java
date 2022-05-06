@@ -20,6 +20,9 @@ public class MainMenuTrainerController {
     @FXML
     public void manageclassesbuttononaction() throws IOException {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("manageclasses.fxml"));
-
+        Stage manageclassesStage = new Stage();
+        manageclassesStage.setTitle("Manage Classes");
+        manageclassesStage.setScene(new Scene(root, 600, 400));
+        manageclassesStage.show();
     }
 }
