@@ -87,6 +87,7 @@ public class ClassService {
         }
 
     }
+
     public static void editClass(String type, String day, String hour, int numberofclients) throws SQLException, Classwiththatscheduledoesnotexist {
         Class gymclass = new Class(type, day, hour, numberofclients);
         checkClasswiththatscheduledoesnotexist(gymclass);
@@ -118,5 +119,33 @@ public class ClassService {
         }
 
     }
-}
 
+    public static void cancelClass(String type, String day, String hour, int numberofclients) throws SQLException, Classdoesnotexist {
+        Class gymclass = new Class(type, day, hour, numberofclients);
+        checkClassdoesnotexist(gymclass);
+        connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        String cancel = "DELETE FROM classes WHERE type = '" + type + "' AND day = '" + day + "' AND hour = '" + hour + "' AND numberofclients = " + numberofclients;
+        preparedStatement = connection.prepareStatement(cancel);
+        System.out.println(preparedStatement);
+        preparedStatement.executeUpdate();
+    }
+
+    private static void checkClassdoesnotexist(Class gymclass) throws Classdoesnotexist {
+        ArrayList<Class> gymclasses = getAllClasses();
+        int ok = 0;
+        if (gymclasses == null)
+            throw new Classdoesnotexist(gymclass.gettype(), gymclass.getday(), gymclass.gethour(), gymclass.getnumberofclients());
+        else {
+            Iterator<Class> it = gymclasses.iterator();
+            while (it.hasNext()) {
+                Class aux = it.next();
+                if (aux.gethour().equals(gymclass.gethour()) && aux.getday().equals(gymclass.getday()) && aux.gettype().equals(gymclass.gettype()) && aux.getnumberofclients() == gymclass.getnumberofclients()) {
+                    ok = 1;
+                    break;
+                }
+            }
+            if(ok==0)
+                throw new Classdoesnotexist(gymclass.gettype(), gymclass.getday(), gymclass.gethour(), gymclass.getnumberofclients());
+        }
+    }
+}
