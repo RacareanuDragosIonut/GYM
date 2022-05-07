@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RequestTrainerController">
+   <children>
+      <AnchorPane prefHeight="106.0" prefWidth="520.0" style="-fx-background-color: #88001b;">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="210.0" layoutX="199.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@requesttrainerlogo.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="55.0" fitWidth="73.0" layoutX="5.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@weight.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="69.0" fitWidth="66.0" layoutX="442.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@LOGOAPP.jpg" />
+         </image>
+      </ImageView>
+      <ListView fx:id="trainersList" layoutX="117.0" layoutY="178.0" prefHeight="134.0" prefWidth="284.0" />
+      <Label layoutX="93.0" layoutY="112.0" text="Who do you want to train with?" textFill="#88001b">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="sendRequestButton" alignment="CENTER" layoutX="135.0" layoutY="321.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="249.0" style="-fx-background-color: #88001b;" text="Send request" textFill="WHITE">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="134.0" layoutY="358.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="250.0" style="-fx-background-color: #88001b;" text="Back" textFill="WHITE" />
+      <Label fx:id="requestMessage" layoutX="183.0" layoutY="147.0" prefHeight="20.0" prefWidth="151.0" />
+   </children>
+</AnchorPane>

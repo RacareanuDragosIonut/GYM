@@ -33,7 +33,7 @@
       <Button fx:id="makeanappointmentButton" layoutX="104.0" layoutY="198.0" mnemonicParsing="false" onAction="#makeanappointmentButtonOnAction" style="-fx-background-color: #88001b;" text="Make an appointment" textFill="WHITE" />
       <Button layoutX="107.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="133.6" style="-fx-background-color: #88001b;" text="View Trainers History" textFill="WHITE" />
       <Button layoutX="308.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="133.6" style="-fx-background-color: #88001b;" text="Request Membership" textFill="WHITE" />
-      <Button layoutX="308.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="133.6" style="-fx-background-color: #88001b;" text="Request trainer" textFill="WHITE" />
+      <Button layoutX="308.0" layoutY="198.0" mnemonicParsing="false" onAction="#requestTrainerButtonOnAction" prefHeight="25.6" prefWidth="133.6" style="-fx-background-color: #88001b;" text="Request trainer" textFill="WHITE" />
       <ImageView fitHeight="66.0" fitWidth="80.0" layoutX="335.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@requesttrainer.jpg" />
