@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="520.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RequestTrainerController">
    <children>
       <AnchorPane prefHeight="106.0" prefWidth="520.0" style="-fx-background-color: #88001b;">
@@ -30,7 +29,7 @@
             <Image url="@LOGOAPP.jpg" />
          </image>
       </ImageView>
-      <ListView fx:id="trainersList" layoutX="117.0" layoutY="178.0" prefHeight="134.0" prefWidth="284.0" />
+      <ListView fx:id="trainersList" layoutX="117.0" layoutY="174.0" prefHeight="138.0" prefWidth="151.0" />
       <Label layoutX="93.0" layoutY="112.0" text="Who do you want to train with?" textFill="#88001b">
          <font>
             <Font size="24.0" />
@@ -43,5 +42,9 @@
       </Button>
       <Button fx:id="backButton" layoutX="134.0" layoutY="358.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="250.0" style="-fx-background-color: #88001b;" text="Back" textFill="WHITE" />
       <Label fx:id="requestMessage" layoutX="183.0" layoutY="147.0" prefHeight="20.0" prefWidth="151.0" />
+      <Label fx:id="trainerDetails" layoutX="276.0" layoutY="177.0" prefHeight="125.0" prefWidth="241.0" textFill="#88001b">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>
