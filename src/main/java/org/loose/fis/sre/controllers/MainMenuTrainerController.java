@@ -25,4 +25,13 @@ public class MainMenuTrainerController {
         manageclassesStage.setScene(new Scene(root, 600, 400));
         manageclassesStage.show();
     }
+    @FXML
+    public void approveclientrequestbuttononaction() throws IOException{
+        Parent root=FXMLLoader.load(getClass().getClassLoader().getResource("approveclientrequest.fxml"));
+        Stage approveclientrequestStage=new Stage();
+        approveclientrequestStage.setTitle("Approve Client Request");
+        approveclientrequestStage.setScene(new Scene(root,600,400));
+        approveclientrequestStage.show();
+    }
+
 }
