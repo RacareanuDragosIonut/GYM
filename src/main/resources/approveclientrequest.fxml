@@ -25,8 +25,8 @@
       <AnchorPane prefHeight="400.0" prefWidth="389.0" style="-fx-background-color: #88001b;" BorderPane.alignment="CENTER">
          <children>
             <ListView fx:id="clientrequestslist" layoutY="1.0" prefHeight="400.0" prefWidth="231.0" style="-fx-background-color: grey;" />
-            <Label fx:id="approveclientrequestmessage" alignment="CENTER" layoutX="234.0" layoutY="232.0" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: white;" text="Label" />
-            <Button fx:id="approveclientbutton" layoutX="239.0" layoutY="95.0"  mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Approve Client Request" />
+            <Label fx:id="approveclientrequestmessage" alignment="CENTER" layoutX="234.0" layoutY="232.0" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: white;" text="" />
+            <Button fx:id="approveclientbutton" layoutX="239.0" layoutY="95.0" onAction="#approveclientbuttononaction" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Approve Client Request" />
          </children>
       </AnchorPane>
    </right>

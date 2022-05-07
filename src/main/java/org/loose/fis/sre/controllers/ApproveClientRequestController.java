@@ -13,15 +13,19 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
 import java.io.IOException;
+
+import org.loose.fis.sre.exceptions.Nospacesavailable;
+import org.loose.fis.sre.services.ApproveClientRequestService;
 public class ApproveClientRequestController implements Initializable {
     @FXML
     private Button approveclientbutton;
     @FXML
     private Button backbuttonclientrequest;
     @FXML
-    private ListView<String>clientrequestslist;
+    private ListView<String> clientrequestslist;
     @FXML
     private Label approveclientrequestmessage;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DatabaseConnection connectNow = new DatabaseConnection();
@@ -32,19 +36,29 @@ public class ApproveClientRequestController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
-            while(queryOutput.next()){
+            while (queryOutput.next()) {
                 String name = queryOutput.getString("name");
                 String age = queryOutput.getString("age");
 
-                String listOut = name+" "+age+" ani";
+                String listOut = name + " " + age + " ani";
                 clientrequestslist.getItems().add(listOut);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void backbuttonclientrequestonaction() throws IOException{
+
+    public void backbuttonclientrequestonaction() throws IOException {
         Stage stage = (Stage) backbuttonclientrequest.getScene().getWindow();
         stage.close();
+    }
+
+    public void approveclientbuttononaction() {
+        try {
+            ApproveClientRequestService.approveclient(clientrequestslist.getSelectionModel().getSelectedItem());
+            approveclientrequestmessage.setText("Approved Request");
+        } catch (Nospacesavailable |SQLException e) {
+            approveclientrequestmessage.setText(e.getMessage());
+        }
     }
 }
