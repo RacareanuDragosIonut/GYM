@@ -17,7 +17,7 @@
                   <Image url="@Approve Client Request.PNG" />
                </image>
             </ImageView>
-            <Button fx:id="backbutton" layoutX="36.0" layoutY="305.0" onAction="#backbuttononaction" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Back to the Home Page" />
+            <Button fx:id="backbuttonclientrequest" layoutX="36.0" layoutY="305.0" onAction="#backbuttonclientrequestonaction" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Back to the Home Page" />
          </children>
       </AnchorPane>
    </left>
@@ -26,7 +26,7 @@
          <children>
             <ListView fx:id="clientrequestslist" layoutY="1.0" prefHeight="400.0" prefWidth="231.0" style="-fx-background-color: grey;" />
             <Label fx:id="approveclientrequestmessage" alignment="CENTER" layoutX="234.0" layoutY="232.0" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: white;" text="Label" />
-            <Button fx:id="approveclientrequestbutton" layoutX="239.0" layoutY="95.0" onAction="#approveclientrequestbuttononaction" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Approve Client Request" />
+            <Button fx:id="approveclientbutton" layoutX="239.0" layoutY="95.0"  mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Approve Client Request" />
          </children>
       </AnchorPane>
    </right>
