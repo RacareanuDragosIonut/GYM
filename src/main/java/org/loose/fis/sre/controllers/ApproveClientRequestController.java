@@ -32,7 +32,13 @@ public class ApproveClientRequestController implements Initializable {
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryOutput = statement.executeQuery(connectQuery);
+            while(queryOutput.next()){
+                String name = queryOutput.getString("name");
+                String age = queryOutput.getString("age");
 
+                String listOut = name+" "+age+" ani";
+                clientrequestslist.getItems().add(listOut);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
