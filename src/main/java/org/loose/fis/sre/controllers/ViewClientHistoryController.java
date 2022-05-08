@@ -22,7 +22,21 @@ public class ViewClientHistoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
 
+        String connectQuery = "SELECT * FROM clients";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+            while (queryOutput.next()) {
+
+                viewclienthistorylist.getItems().add(queryOutput.getString("client_information"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public void backbuttonviewclienthistoryonaction()throws IOException{
         Stage stage = (Stage) backbuttonviewclienthistory.getScene().getWindow();
