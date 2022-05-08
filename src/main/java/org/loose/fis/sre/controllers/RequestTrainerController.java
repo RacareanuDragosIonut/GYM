@@ -82,7 +82,10 @@ public class RequestTrainerController implements Initializable {
         }
     }
 
-    
+    public void backButtonOnAction() throws IOException {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
+    }
 
     public void sendRequestButtonOnAction() throws SQLException{
         try {
