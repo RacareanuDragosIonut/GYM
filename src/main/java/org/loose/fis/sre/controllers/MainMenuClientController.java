@@ -15,4 +15,12 @@ public class MainMenuClientController {
         appointmentStage.setScene(new Scene(root, 520, 400));
         appointmentStage.show();
     }
+
+    public void requestTrainerButtonOnAction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("requesttrainer.fxml"));
+        Stage appointmentStage = new Stage();
+        appointmentStage.setTitle("Request a trainer");
+        appointmentStage.setScene(new Scene(root, 520, 400));
+        appointmentStage.show();
+    }
 }
