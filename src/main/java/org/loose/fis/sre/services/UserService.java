@@ -2,9 +2,13 @@ package org.loose.fis.sre.services;
 
 import java.sql.*;
 import java.util.*;
+
+import org.loose.fis.sre.exceptions.RequestAlreadySent;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.exceptions.UsernameNotFound;
 import org.loose.fis.sre.exceptions.WrongPassword;
+import org.loose.fis.sre.model.Trainer;
+import org.loose.fis.sre.model.TrainerRequests;
 import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.DatabaseConnection;
 import java.nio.charset.StandardCharsets;
@@ -20,8 +24,9 @@ public class UserService {
 
     private static final String DATABASE_URL = "jdbc:mysql://localhost/gymapp";
     private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "AnisiaRosu12";
+    private static final String DATABASE_PASSWORD = "douazecisiunu2121";
     private static final String INSERT_QUERY = "INSERT INTO user_account (username, password, firstname, lastname, age, phonenumber, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_QUERY_2 = "INSERT INTO trainerrequests (client_username, trainer) VALUES (?, ?)";
 
 
     private static String connectQuery = "SELECT username FROM user_account";
@@ -120,6 +125,44 @@ public class UserService {
             if(user.getRole().equals("Trainer"))
                 return 2;
             return 0;
+    }
+
+    public static ArrayList<TrainerRequests> getAllRequests() {
+        try {
+            ArrayList<TrainerRequests> requests = new ArrayList<>();
+            statement.execute("SELECT * FROM trainerrequests");
+            ResultSet resultSet = statement.getResultSet();
+
+            while(resultSet.next())
+                requests.add(new TrainerRequests( resultSet.getString("client_username"), resultSet.getString("trainer")));
+
+            return requests.size() == 0 ? null : requests;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void checkRequestAlreadySent(String client_username, String trainer) throws SQLException, RequestAlreadySent {
+        ArrayList<TrainerRequests> requests = getAllRequests();
+        if(requests != null) {
+            Iterator<TrainerRequests> it =  requests.iterator();
+            while(it.hasNext()) {
+                TrainerRequests aux = it.next();
+                if(aux.getClient_username().equals(client_username)&&aux.getTrainer().equals(trainer))
+                    throw new RequestAlreadySent(client_username);
+            }
+        }
+    }
+
+    public static void addRequest(String client_username, String trainer) throws SQLException, RequestAlreadySent {
+        checkRequestAlreadySent(client_username,trainer);
+        connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        preparedStatement = connection.prepareStatement(INSERT_QUERY_2);
+        preparedStatement.setString(1, client_username);
+        preparedStatement.setString(2, trainer);
+        System.out.println(preparedStatement);
+        preparedStatement.executeUpdate();
     }
 
     private static String encodePassword(String salt, String password) {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.ViewClientHistoryController">
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="205.0" style="-fx-background-color: #88001b;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@View Client History.PNG" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="395.0" style="-fx-background-color: #88001b;" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="viewclienthistorylist" layoutX="-1.0" prefHeight="400.0" prefWidth="243.0" style="-fx-background-color: grey;" />
+            <Button fx:id="backbuttonviewclienthistory" layoutX="245.0" layoutY="293.0" onAction="#backbuttonviewclienthistoryonaction" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Back to the Home Page" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

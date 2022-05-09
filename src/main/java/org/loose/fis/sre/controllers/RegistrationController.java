@@ -20,6 +20,10 @@ import java.sql.SQLException;
 
 public class RegistrationController {
 
+    private Stage window1;
+    private Scene scene;
+    private Parent root;
+
     public Button registerButton;
     @FXML
     private Label registrationMessage;
@@ -38,7 +42,7 @@ public class RegistrationController {
     @FXML
     private ChoiceBox role;
     @FXML
-    private Button loginButton;
+    public Button loginButton;
 
     /*public void loginButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -57,10 +61,14 @@ public class RegistrationController {
             UserService.addUser(usernameField.getText(), passwordField.getText(), firstnameField.getText(), lastnameField.getText(),  ageField.getText(), phonenumberField.getText(), (String) role.getValue());
             registrationMessage.setText("Account created successfully!");
             loginButtonOnAction();
+
         } catch (UsernameAlreadyExistsException | SQLException e) {
             registrationMessage.setText(e.getMessage());
+       
         }
     }
+
+
 
     public void loginButtonOnAction() {
         try {
@@ -76,3 +84,5 @@ public class RegistrationController {
     }
 }
 
+
+    
