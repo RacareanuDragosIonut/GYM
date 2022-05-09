@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.loose.fis.sre.DatabaseConnection;
+import org.loose.fis.sre.exceptions.AppointmentAlreadyMade;
 import org.loose.fis.sre.exceptions.ClassFull;
 import org.loose.fis.sre.services.GymClassesService;
 
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
+
 
 public class MakeAnAppointmentController implements Initializable {
 
@@ -62,11 +64,11 @@ public class MakeAnAppointmentController implements Initializable {
 
     }
 
-    public void makeanappointmentButtonOnAction() throws ClassFull, SQLException {
+    public void makeanappointmentButtonOnAction() throws SQLException {
         try {
-            GymClassesService.addAppointment(classesList.getSelectionModel().getSelectedItem());
+            GymClassesService.addAppointment(LoginController.user.getUsername(), classesList.getSelectionModel().getSelectedItem());
             hours.setText("Successful appointment!");
-        }catch (ClassFull e){
+        }catch (AppointmentAlreadyMade | ClassFull e){
             hours.setText(e.getMessage());
         }
 

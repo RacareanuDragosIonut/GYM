@@ -16,7 +16,7 @@
             </ImageView>
          </children></AnchorPane>
       <ListView fx:id="classesList" layoutX="136.0" layoutY="160.0" prefHeight="131.0" prefWidth="247.0" />
-      <Label fx:id="hours" alignment="CENTER" layoutX="136.0" layoutY="112.0" prefHeight="46.0" prefWidth="247.0" textFill="#88001b">
+      <Label fx:id="hours" alignment="CENTER" layoutX="13.0" layoutY="112.0" prefHeight="46.0" prefWidth="433.0" textFill="#88001b">
          <font>
             <Font size="13.0" />
          </font></Label>
