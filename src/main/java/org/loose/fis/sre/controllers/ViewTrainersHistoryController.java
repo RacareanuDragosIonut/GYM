@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import org.loose.fis.sre.DatabaseConnection;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,5 +41,10 @@ public class ViewTrainersHistoryController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void backButtonOnAction() throws IOException {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
     }
 }
