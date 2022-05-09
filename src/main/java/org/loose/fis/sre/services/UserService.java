@@ -24,7 +24,7 @@ public class UserService {
 
     private static final String DATABASE_URL = "jdbc:mysql://localhost/gymapp";
     private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "douazecisiunu2121";
+    private static final String DATABASE_PASSWORD = "AnisiaRosu12";
     private static final String INSERT_QUERY = "INSERT INTO user_account (username, password, firstname, lastname, age, phonenumber, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String INSERT_QUERY_2 = "INSERT INTO trainerrequests (client_username, trainer) VALUES (?, ?)";
 
