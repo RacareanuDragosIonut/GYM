@@ -23,7 +23,21 @@ public class ViewClassestoDoController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
+        String connectQuery = "SELECT * FROM classes";
 
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+            while (queryOutput.next()) {
+                String type=queryOutput.getString("type");
+                String day=queryOutput.getString("day");
+                String hour=queryOutput.getString("hour");
+                String listout=type+" "+day+" at "+hour;
+                viewclassestodolist.getItems().add(listout);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
     public void backbuttonviewclassestodoonaction()throws IOException{
