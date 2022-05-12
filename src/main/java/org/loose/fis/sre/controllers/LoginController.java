@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import org.loose.fis.sre.exceptions.UsernameNotFound;
 import org.loose.fis.sre.exceptions.WrongPassword;
+import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.services.UserService;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class LoginController {
     private Stage window1;
     private Scene scene;
     private Parent root;
-
+    protected static User user;
+  
     @FXML
     private TextField usernameField;
     @FXML
@@ -56,6 +58,7 @@ public class LoginController {
                 clientStage.setTitle("Main Menu");
                 clientStage.setScene(new Scene(root, 520, 400));
                 clientStage.show();
+                user = new User(usernameField.getText(), passwordField.getText(), (String) role.getValue());
                 //window1 = (Stage)loginButton.getScene().getWindow();
                 //window1.setScene(new Scene(root));
             }
@@ -66,6 +69,7 @@ public class LoginController {
                     trainerStage.setTitle("Main Menu");
                     trainerStage.setScene(new Scene(root, 520, 400));
                     trainerStage.show();
+                    user = new User(usernameField.getText(), passwordField.getText(), (String) role.getValue());
                     //window1 = (Stage)loginButton.getScene().getWindow();
                     //window1.setScene(new Scene(root));
                 }

@@ -33,5 +33,13 @@ public class MainMenuTrainerController {
         approveclientrequestStage.setScene(new Scene(root,600,400));
         approveclientrequestStage.show();
     }
+    @FXML
+    public void viewclienthistorybuttononaction() throws IOException{
+        Parent root=FXMLLoader.load(getClass().getClassLoader().getResource("viewclienthistory.fxml"));
+        Stage viewclienthistoryStage=new Stage();
+        viewclienthistoryStage.setTitle("View Client History");
+        viewclienthistoryStage.setScene(new Scene(root,600,400));
+        viewclienthistoryStage.show();
+    }
 
 }

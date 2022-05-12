@@ -22,7 +22,7 @@
         </ImageView>
         <Button fx:id="manageclassesbutton" layoutX="70.0" layoutY="193.0" onAction="#manageclassesbuttononaction" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="Manage classes" textFill="WHITE" />
         <Button layoutX="195.0" layoutY="271.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="View Classes To Do" textFill="WHITE" />
-        <Button layoutX="328.0" layoutY="193.0" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="View Client History" textFill="WHITE" />
+        <Button fx:id="viewclienthistorybutton" layoutX="328.0" layoutY="193.0" onAction="#viewclienthistorybuttononaction" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="View Client History" textFill="WHITE" />
         <Button fx:id="approveclientrequestbutton" layoutX="70.0" layoutY="350.0" onAction="#approveclientrequestbuttononaction" mnemonicParsing="false" prefHeight="25.6" prefWidth="177.6" style="-fx-background-color: #88001b;" text="Approve Client Request" textFill="WHITE" />
         <Button layoutX="328.0" layoutY="350.0" mnemonicParsing="false" style="-fx-background-color: #88001b;" text="Approve Membership Request" textFill="WHITE" />
         <ImageView fitHeight="54.0" fitWidth="63.0" layoutX="115.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">

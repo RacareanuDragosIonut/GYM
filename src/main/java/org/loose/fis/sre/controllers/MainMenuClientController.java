@@ -15,4 +15,20 @@ public class MainMenuClientController {
         appointmentStage.setScene(new Scene(root, 520, 400));
         appointmentStage.show();
     }
+
+    public void requestTrainerButtonOnAction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("requesttrainer.fxml"));
+        Stage requestTrainerStage = new Stage();
+        requestTrainerStage.setTitle("Request a trainer");
+        requestTrainerStage.setScene(new Scene(root, 520, 400));
+        requestTrainerStage.show();
+    }
+
+    public void viewTrainersHistoryButtonOnAction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("viewtrainershistory.fxml"));
+        Stage trainersHistoryStage = new Stage();
+        trainersHistoryStage.setTitle("View Trainers History");
+        trainersHistoryStage.setScene(new Scene(root, 520, 400));
+        trainersHistoryStage.show();
+    }
 }
