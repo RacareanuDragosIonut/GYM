@@ -26,5 +26,8 @@ public class ViewClassestoDoController implements Initializable {
 
 
     }
-
+    public void backbuttonviewclassestodoonaction()throws IOException{
+        Stage stage = (Stage) backbuttonviewclassestodo.getScene().getWindow();
+        stage.close();
+    }
 }
