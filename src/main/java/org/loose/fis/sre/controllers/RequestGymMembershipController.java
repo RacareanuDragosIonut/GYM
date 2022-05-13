@@ -1,9 +1,19 @@
 package org.loose.fis.sre.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import org.loose.fis.sre.DatabaseConnection;
 
-public class RequestGymMembershipController {
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ResourceBundle;
+
+public class RequestGymMembershipController implements Initializable {
 
     @FXML
     private Button backButton;
@@ -11,4 +21,26 @@ public class RequestGymMembershipController {
     @FXML
     private Button sendRequestButton;
 
+    @FXML
+    private ListView<String> membershipsList;
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String connectQuery = "SELECT * FROM memberships";
+
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+
+            while (queryOutput.next()) {
+                String listOut = queryOutput.getString("membership_type");
+                membershipsList.getItems().add(listOut);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
