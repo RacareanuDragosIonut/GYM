@@ -26,9 +26,24 @@ public class ApproveMembershipRequestController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
+        String connectQuery = "SELECT * FROM membership_requests";
 
-
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryOutput = statement.executeQuery(connectQuery);
+            while (queryOutput.next()) {
+                String membership_type = queryOutput.getString("membership_type");
+                String client_name= queryOutput.getString("client_name");
+                String client_age=queryOutput.getString("client_age");
+                String listOut = membership_type + "-" + client_name + "-"+client_age;
+                membershiprequestslist.getItems().add(listOut);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     public void backbuttonapprovemembershiprequestonaction()throws IOException{
         Stage stage = (Stage) backbuttonapprovemembershiprequest.getScene().getWindow();
