@@ -43,6 +43,9 @@
       </Label>
       <ListView fx:id="membershipsList" layoutX="54.0" layoutY="162.0" prefHeight="150.0" prefWidth="214.0" />
       <Label fx:id="requestMessage" layoutX="119.0" layoutY="147.0" prefHeight="18.0" prefWidth="279.0" />
-      <Label fx:id="membershipDetails" layoutX="292.0" layoutY="185.0" prefHeight="126.0" prefWidth="221.0" />
+      <Label fx:id="membershipDetails" layoutX="292.0" layoutY="185.0" prefHeight="126.0" prefWidth="221.0" textFill="#88001b">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </children>
 </AnchorPane>
