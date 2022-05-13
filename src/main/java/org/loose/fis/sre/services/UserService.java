@@ -3,10 +3,8 @@ package org.loose.fis.sre.services;
 import java.sql.*;
 import java.util.*;
 
-import org.loose.fis.sre.exceptions.RequestAlreadySent;
-import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
-import org.loose.fis.sre.exceptions.UsernameNotFound;
-import org.loose.fis.sre.exceptions.WrongPassword;
+import org.loose.fis.sre.exceptions.*;
+import org.loose.fis.sre.model.MembershipRequests;
 import org.loose.fis.sre.model.Trainer;
 import org.loose.fis.sre.model.TrainerRequests;
 import org.loose.fis.sre.model.User;
@@ -27,6 +25,7 @@ public class UserService {
     private static final String DATABASE_PASSWORD = "AnisiaRosu12";
     private static final String INSERT_QUERY = "INSERT INTO user_account (username, password, firstname, lastname, age, phonenumber, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
     private static final String INSERT_QUERY_2 = "INSERT INTO trainerrequests (client_username, trainer) VALUES (?, ?)";
+    private static final String INSERT_QUERY_3 = "INSERT INTO membershiprequests (client_username, membership_type) VALUES (?, ?)";
 
 
     private static String connectQuery = "SELECT username FROM user_account";
@@ -161,6 +160,44 @@ public class UserService {
         preparedStatement = connection.prepareStatement(INSERT_QUERY_2);
         preparedStatement.setString(1, client_username);
         preparedStatement.setString(2, trainer);
+        System.out.println(preparedStatement);
+        preparedStatement.executeUpdate();
+    }
+
+    public static ArrayList<MembershipRequests> getAllMembershipRequests() {
+        try {
+            ArrayList<MembershipRequests> requests = new ArrayList<>();
+            statement.execute("SELECT * FROM membershiprequests");
+            ResultSet resultSet = statement.getResultSet();
+
+            while(resultSet.next())
+                requests.add(new MembershipRequests( resultSet.getString("client_username"), resultSet.getString("membership_type")));
+
+            return requests.size() == 0 ? null : requests;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void checkMembershipRequestAlreadySent(String client_username, String membership_type) throws MembershipRequestAlreadySent {
+        ArrayList<MembershipRequests> requests = getAllMembershipRequests();
+        if(requests != null) {
+            Iterator<MembershipRequests> it =  requests.iterator();
+            while(it.hasNext()) {
+                MembershipRequests aux = it.next();
+                if(aux.getClient_username().equals(client_username)&&aux.getMembership_type().equals(membership_type))
+                    throw new MembershipRequestAlreadySent(client_username);
+            }
+        }
+    }
+
+    public static void addMembershipRequest(String client_username, String membership_type) throws SQLException, MembershipRequestAlreadySent {
+        checkMembershipRequestAlreadySent(client_username,membership_type);
+        connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        preparedStatement = connection.prepareStatement(INSERT_QUERY_3);
+        preparedStatement.setString(1, client_username);
+        preparedStatement.setString(2, membership_type);
         System.out.println(preparedStatement);
         preparedStatement.executeUpdate();
     }
