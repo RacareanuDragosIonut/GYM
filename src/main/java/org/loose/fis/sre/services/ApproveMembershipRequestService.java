@@ -6,6 +6,7 @@ import org.loose.fis.sre.exceptions.Nospacesavailable;
 import org.loose.fis.sre.model.Client;
 import org.loose.fis.sre.model.MembershipModel;
 import org.loose.fis.sre.DatabaseConnection;
+import org.loose.fis.sre.exceptions.TooYoung;
 public class ApproveMembershipRequestService {
     private static Statement statement;
     private static PreparedStatement preparedStatement = null;
@@ -32,6 +33,21 @@ public class ApproveMembershipRequestService {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public static void approvemembership(String membership_type,String client_name,String client_age) throws TooYoung, SQLException {
+        MembershipModel membership_request = new MembershipModel(membership_type,client_name,client_age);
+        checkifTooYoung(membership_request);
+        connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
+        preparedStatement = connection.prepareStatement(INSERT_QUERY);
+        preparedStatement.setString(1, membership_type);
+        preparedStatement.setString(2,client_name);
+        preparedStatement.setString(3,client_age);
+        System.out.println(preparedStatement);
+        preparedStatement.executeUpdate();
+    }
+    public static void checkifTooYoung(MembershipModel membership_request) throws TooYoung,SQLException{
+        if(!membership_request.getmembership_type().equals("Pool Membership")&&Integer.valueOf(membership_request.getclient_age())<15)
+            throw new TooYoung();
     }
 
 }

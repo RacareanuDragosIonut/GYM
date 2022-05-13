@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
+
+import org.loose.fis.sre.exceptions.TooYoung;
+import org.loose.fis.sre.services.ApproveMembershipRequestService;
 public class ApproveMembershipRequestController implements Initializable {
     @FXML
     private Button approvemembershiprequestbutton;
@@ -49,7 +52,24 @@ public class ApproveMembershipRequestController implements Initializable {
         Stage stage = (Stage) backbuttonapprovemembershiprequest.getScene().getWindow();
         stage.close();
     }
-    public void approvemembershiprequestbuttononaction(){
-
+    public void approvemembershiprequestbuttononaction() {
+        try {
+            String membership_request = membershiprequestslist.getSelectionModel().getSelectedItem();
+            int i = 1;
+            String mem = null, name = null, age = null;
+            for (String val : membership_request.split("-")) {
+                if (i == 1)
+                    mem = val;
+                if (i == 2)
+                    name = val;
+                if (i == 3)
+                    age = val;
+                i++;
+            }
+            ApproveMembershipRequestService.approvemembership(mem, name, age);
+            approvemembershiprequestmessage.setText("Approved membership request");
+        }catch(TooYoung|SQLException e){
+            approvemembershiprequestmessage.setText(e.getMessage());
+        }
     }
 }
