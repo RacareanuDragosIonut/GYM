@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import org.loose.fis.sre.DatabaseConnection;
 import org.loose.fis.sre.exceptions.MembershipRequestAlreadySent;
 import org.loose.fis.sre.exceptions.RequestAlreadySent;
@@ -14,6 +15,7 @@ import org.loose.fis.sre.model.GymMembership;
 import org.loose.fis.sre.model.Trainer;
 import org.loose.fis.sre.services.UserService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -90,5 +92,10 @@ public class RequestGymMembershipController implements Initializable {
         } catch (SQLException | MembershipRequestAlreadySent e) {
             requestMessage.setText(e.getMessage());
         }
+    }
+
+    public void backButtonOnAction() throws IOException {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
     }
 }
