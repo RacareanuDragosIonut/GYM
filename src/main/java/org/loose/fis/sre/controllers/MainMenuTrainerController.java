@@ -41,5 +41,13 @@ public class MainMenuTrainerController {
         viewclienthistoryStage.setScene(new Scene(root,600,400));
         viewclienthistoryStage.show();
     }
+    @FXML
+    public void viewclassestodobuttononaction() throws IOException{
+        Parent root=FXMLLoader.load(getClass().getClassLoader().getResource("viewclassestodo.fxml"));
+        Stage viewclassestodoStage=new Stage();
+        viewclassestodoStage.setTitle("View Classes to Do");
+        viewclassestodoStage.setScene(new Scene(root,600,400));
+        viewclassestodoStage.show();
+    }
 
 }
