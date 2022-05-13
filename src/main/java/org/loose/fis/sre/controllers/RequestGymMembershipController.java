@@ -8,8 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import org.loose.fis.sre.DatabaseConnection;
+import org.loose.fis.sre.exceptions.MembershipRequestAlreadySent;
+import org.loose.fis.sre.exceptions.RequestAlreadySent;
 import org.loose.fis.sre.model.GymMembership;
 import org.loose.fis.sre.model.Trainer;
+import org.loose.fis.sre.services.UserService;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -77,6 +80,15 @@ public class RequestGymMembershipController implements Initializable {
             });
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void sendRequestButtonOnAction() {
+        try {
+            UserService.addMembershipRequest(LoginController.user.getUsername(), membership.getMembership_type());
+            requestMessage.setText("Request sent!");
+        } catch (SQLException | MembershipRequestAlreadySent e) {
+            requestMessage.setText(e.getMessage());
         }
     }
 }
