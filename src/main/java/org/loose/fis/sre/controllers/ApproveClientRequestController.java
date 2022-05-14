@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import java.io.IOException;
 
+import org.loose.fis.sre.exceptions.ClientAlreadyApproved;
 import org.loose.fis.sre.exceptions.Nospacesavailable;
 import org.loose.fis.sre.services.ApproveClientRequestService;
 public class ApproveClientRequestController implements Initializable {
@@ -57,7 +58,7 @@ public class ApproveClientRequestController implements Initializable {
         try {
             ApproveClientRequestService.approveclient(clientrequestslist.getSelectionModel().getSelectedItem());
             approveclientrequestmessage.setText("Approved Request");
-        } catch (Nospacesavailable |SQLException e) {
+        } catch (ClientAlreadyApproved|Nospacesavailable |SQLException e) {
             approveclientrequestmessage.setText(e.getMessage());
         }
     }
