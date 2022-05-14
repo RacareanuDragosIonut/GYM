@@ -6,7 +6,7 @@ import java.util.*;
 import org.loose.fis.sre.exceptions.Nospacesavailable;
 import org.loose.fis.sre.model.Client;
 import org.loose.fis.sre.DatabaseConnection;
-
+import org.loose.fis.sre.exceptions.ClientAlreadyApproved;
 
 
 public class ApproveClientRequestService {
@@ -37,8 +37,35 @@ public class ApproveClientRequestService {
             e.printStackTrace();
         }
     }
-    public static void approveclient(String client_information) throws Nospacesavailable, SQLException {
+    public static ArrayList<Client> getAllClients() {
+        try {
+            ArrayList<Client> clients = new ArrayList<>();
+            statement.execute("SELECT * FROM clients");
+            ResultSet resultSet = statement.getResultSet();
+
+            while(resultSet.next())
+                clients.add(new Client(resultSet.getString("client_information")));
+
+            return clients.size() == 0 ? null : clients;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static void checkClientAlreadyApproved(Client client) throws SQLException, ClientAlreadyApproved {
+        ArrayList<Client> clients = getAllClients();
+        if(clients != null) {
+            Iterator<Client> it =  clients.iterator();
+            while(it.hasNext()) {
+                Client aux = it.next();
+                if(aux.getclient_information().equals(client.getclient_information()))
+                    throw new ClientAlreadyApproved();
+            }
+        }
+    }
+    public static void approveclient(String client_information) throws Nospacesavailable, SQLException,ClientAlreadyApproved {
         Client client = new Client(client_information);
+        checkClientAlreadyApproved(client);
         checkNumberOfParticipants(client);
         connection = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
         preparedStatement = connection.prepareStatement(INSERT_QUERY);
