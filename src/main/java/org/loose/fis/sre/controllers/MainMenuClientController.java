@@ -31,4 +31,12 @@ public class MainMenuClientController {
         trainersHistoryStage.setScene(new Scene(root, 520, 400));
         trainersHistoryStage.show();
     }
+
+    public void requestMembershipButtonOnAction() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("requestmembership.fxml"));
+        Stage requestMembershipStage = new Stage();
+        requestMembershipStage.setTitle("Request a gym membership");
+        requestMembershipStage.setScene(new Scene(root, 520, 400));
+        requestMembershipStage.show();
+    }
 }
