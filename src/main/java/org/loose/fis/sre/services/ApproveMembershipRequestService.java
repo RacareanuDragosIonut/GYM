@@ -34,6 +34,21 @@ public class ApproveMembershipRequestService {
             e.printStackTrace();
         }
     }
+    public static ArrayList<MembershipModel> getAllApprovedMemberships() {
+        try {
+            ArrayList<MembershipModel> memberships = new ArrayList<>();
+            statement.execute("SELECT * FROM memberships_approved");
+            ResultSet resultSet = statement.getResultSet();
+
+            while(resultSet.next())
+                memberships.add(new MembershipModel(resultSet.getString("membership_type"),resultSet.getString("client_name"),resultSet.getString("client_age")));
+
+            return memberships.size() == 0 ? null : memberships;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public static void approvemembership(String membership_type,String client_name,String client_age) throws TooYoung, SQLException {
         MembershipModel membership_request = new MembershipModel(membership_type,client_name,client_age);
         checkifTooYoung(membership_request);
