@@ -23,7 +23,7 @@ public class GymClassesService {
 
     private static final String DATABASE_URL = "jdbc:mysql://localhost/gymapp";
     private static final String DATABASE_USERNAME = "root";
-    private static final String DATABASE_PASSWORD = "AnisiaRosu12";
+    private static final String DATABASE_PASSWORD = "douazecisiunu2121";
     private static final String INSERT_QUERY = "INSERT INTO appointments (class_name, client_username) VALUES (?, ?)";
 
     static ResultSet queryOutput, resultSet;
