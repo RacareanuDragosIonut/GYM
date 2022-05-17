@@ -93,12 +93,13 @@ public class RegistrationControllerTest {
         assertThat(user.getRole()).isEqualTo("Client");
 
         robot.clickOn("#backButton");
-        //assertThat(robot.lookup("#registrationMessage").queryText()).hasText("Account created successfully!");
-        robot.clickOn("#registerButton");
+        assertThat(robot.lookup("#registrationMessage").queryLabeled()).hasText("Account created successfully!");
+
         assertThat(UserService.getAllUsers()).size().isEqualTo(1);
-        /*assertThat(robot.lookup("#registrationMessage").queryText()).hasText(
+        robot.clickOn("#registerButton");
+        assertThat(robot.lookup("#registrationMessage").queryLabeled()).hasText(
                 String.format("An account with the username %s already exists!", USERNAME)
-        );*/
+        );
 
     }
 }
