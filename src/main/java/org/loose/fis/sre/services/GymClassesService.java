@@ -76,7 +76,7 @@ public class GymClassesService {
             if(gymclass.getClass_name().equals(resultSet.getString("class_name")))
                 s = s + 1;
         }
-        if(s>=30)
+        if(s==30)
             throw new ClassFull(gymclass.getClass_name());
     }
 
