@@ -1,10 +1,8 @@
 package org.loose.fis.sre.controllers;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.loose.fis.sre.DatabaseConnection;
@@ -12,23 +10,16 @@ import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
 import org.loose.fis.sre.exceptions.UsernameNotFound;
 import org.loose.fis.sre.exceptions.WrongPassword;
 import org.loose.fis.sre.model.TrainerRequests;
-import org.loose.fis.sre.model.User;
-import org.loose.fis.sre.services.FileSystemService;
-import org.loose.fis.sre.controllers.RegistrationController;
+
 import org.loose.fis.sre.services.UserService;
-import org.loose.fis.sre.controllers.LoginController;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
-
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.testfx.assertions.api.Assertions.assertThat;
 @ExtendWith(ApplicationExtension.class)
 public class RequestTrainerControllerTest {
@@ -75,7 +66,7 @@ public class RequestTrainerControllerTest {
     }
 
     @Test
-    @DisplayName("appointment successfully added to database && you can't request a trainer that you already requested")
+    @DisplayName("trainer request successfully added to database && you can't request a trainer that you already requested")
     void testSendTrainerRequest(FxRobot robot) throws SQLException, WrongPassword, UsernameNotFound {
         robot.clickOn("#usernameField");
         robot.write(USERNAME);
@@ -95,7 +86,7 @@ public class RequestTrainerControllerTest {
 
         robot.clickOn("#trainersList");
         robot.clickOn("#sendRequestButton");
-        assertThat(UserService.getAllUsers()).size().isEqualTo(1);
+        assertThat(UserService.getAllRequests()).size().isEqualTo(1);
         assertThat(robot.lookup("#requestMessage").queryLabeled()).hasText(
                 String.format("You already sent a request to this trainer")
         );
