@@ -76,7 +76,7 @@ public class ViewClientHistoryControllerTest {
         robot.clickOn("#loginButton");
         robot.clickOn("#viewclienthistorybutton");
         assertThat(ApproveClientRequestService.getAllClients()).isNotNull();
-        assertThat(ClassService.getAllClasses()).size().isEqualTo(1);
+        assertThat(ApproveClientRequestService.getAllClients()).size().isEqualTo(1);
     }
 }
 
