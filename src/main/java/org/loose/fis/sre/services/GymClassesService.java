@@ -6,8 +6,10 @@ import java.util.*;
 import org.loose.fis.sre.exceptions.AppointmentAlreadyMade;
 import org.loose.fis.sre.exceptions.ClassFull;
 
+import org.loose.fis.sre.model.Appointment;
 import org.loose.fis.sre.model.GymClass;
 import org.loose.fis.sre.DatabaseConnection;
+import org.loose.fis.sre.model.TrainerRequests;
 
 
 import java.nio.charset.StandardCharsets;
@@ -74,7 +76,23 @@ public class GymClassesService {
             if(gymclass.getClass_name().equals(resultSet.getString("class_name")))
                 s = s + 1;
         }
-        if(s>=2)
+        if(s==30)
             throw new ClassFull(gymclass.getClass_name());
+    }
+
+    public static ArrayList<Appointment> getAllAppointments() {
+        try {
+            ArrayList<Appointment> appointments = new ArrayList<>();
+            statement.execute("SELECT * FROM appointments");
+            ResultSet resultSet = statement.getResultSet();
+
+            while(resultSet.next())
+                appointments.add(new Appointment( resultSet.getString("class_name"), resultSet.getString("client_username")));
+
+            return appointments.size() == 0 ? null : appointments;
+        } catch(SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
