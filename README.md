@@ -15,8 +15,6 @@ After the user creates an account, he has to login by entering his username and 
 selecting his role.
 
 
-
-A JavaFX Application demonstrating how to implement a simplistic approach of a registration use case using the following technologies:
 * [Java 15 or 16](https://www.oracle.com/java/technologies/javase-downloads.html)
 * [JavaFX](https://openjfx.io/openjfx-docs/) (as GUI)
 *  [Gradle](https://gradle.org/) (as build tools)
